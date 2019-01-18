@@ -5,7 +5,7 @@ services:
 
 before_install:
 - docker pull registry.cn-hangzhou.aliyuncs.com/xdl/xdl:ubuntu-cpu-tf1.12-without-avx2-fma
-- docker run registry.cn-hangzhou.aliyuncs.com/xdl/xdl:ubuntu-cpu-tf1.12-without-avx2-fma /bin/sh -c "cd /root/x-deeplearning/xdl; mkdir build && cd build; export CC=/usr/bin/gcc-5 && export CXX=/usr/bin/g++-5; cmake .. -DTF_BACKEND=1; make -j16; make test; make install_python_lib"
+- docker run -v x-deeplearning:/root/ registry.cn-hangzhou.aliyuncs.com/xdl/xdl:ubuntu-cpu-tf1.12-without-avx2-fma /bin/sh -c "cd /root/x-deeplearning/xdl; mkdir build && cd build; export CC=/usr/bin/gcc-5 && export CXX=/usr/bin/g++-5; cmake .. -DTF_BACKEND=1; make -j16; make test; make install_python_lib"
 
 script:
 - make test
